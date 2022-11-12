@@ -6,6 +6,7 @@ import Scanner from '../components/Scanner';
 import { NavigationContainer } from '@react-navigation/native';
 import Screen from '../components/Screen';
 import BusList from '../components/BusList';
+import QRCodeInformation from '../components/QRCodeInformation';
 
 const HomeStackScreen = () => {
   const Stack = createNativeStackNavigator();
@@ -17,6 +18,8 @@ const HomeStackScreen = () => {
     <Stack.Screen name="BusRute" component={BusRute} />
     <Stack.Screen name="BusList" component={BusList} />
     <Stack.Screen name="Scanner" component={Scanner} />
+    <Stack.Screen name="QRCodeInformation" component={QRCodeInformation} />
+
     </Stack.Navigator>
     </NavigationContainer>
   )

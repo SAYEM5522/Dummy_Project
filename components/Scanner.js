@@ -1,22 +1,31 @@
 
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Dimensions } from 'react-native';
 import React, { useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { useNavigation } from '@react-navigation/native';
+const {width, height} = Dimensions.get('window')
 
 export default function Scanner() {
   const [hasPermission, setHasPermission] = React.useState(false);
   const [scanData, setScanData] = React.useState();
-  const devices = useCameraDevices()
-  const device = devices.back
-console.log(device)
+  const navigation=useNavigation()
+
   useEffect(() => {
     (async() => {
       const {status} = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
-  }, []);
+    (
+      scanData&& 
+      navigation.navigate("QRCodeInformation",
+      {
+        data:scanData
+      }
+      )
+    )
+  }, [scanData]);
 
   if (!hasPermission) {
     return (
@@ -28,17 +37,17 @@ console.log(device)
 
   const handleBarCodeScanned = ({type, data}) => {
     setScanData(data);
-    console.log(`Data: ${data}`);
-    console.log(`Type: ${type}`);
   };
 
   return (
     <View style={styles.container}>
       <BarCodeScanner 
-        style={{height:400,width:400}}
+        style={{height:width,width:height}}
         onBarCodeScanned={scanData ? undefined : handleBarCodeScanned}
         />
-      {scanData && <Button title='Scan Again?' onPress={() => setScanData(undefined)} />}
+      {/* {scanData && <QRCodeInformation data={scanData}/>
+      } */}
+      
      
       <StatusBar style="auto" />
     </View>
