@@ -47,7 +47,5 @@ const styles = StyleSheet.create({
     borderRadius:8,
     paddingVertical:10,
    position:"absolute",
-   
-
   }
 })

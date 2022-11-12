@@ -1,4 +1,4 @@
-import { Dimensions, Keyboard, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Dimensions, Keyboard, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
 const { width, height } = Dimensions.get('window')
 
@@ -19,6 +19,17 @@ const styles = StyleSheet.create({
     position:'relative',
     
   },
+  container:{
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  Caption:{
+    fontSize:20,
+    fontWeight:"700",
+    fontStyle:"italic"
+  }
 })
 
 const SignIn = () => {
@@ -27,6 +38,8 @@ const SignIn = () => {
   },[])
 
   return (
+    <View style={styles.container}>
+      <Text style={styles.Caption}>Eticket</Text>
     <Pressable onPress={Keyboard.dismiss}>
     <View style={styles.inner}>
   <View>
@@ -38,10 +51,13 @@ const SignIn = () => {
       placeholder='Phone Number...'
        style={styles.textInput} />
     </View>
-    <Text style={{alignSelf:"center",marginTop:15,borderWidth:1,padding:10,borderRadius:8}} onPress={Submit}>Submit</Text>
+    <TouchableOpacity onPress={Submit}>
+    <Text style={{alignSelf:"center",marginTop:15,borderWidth:1,paddingHorizontal:20,borderRadius:8,paddingVertical:9}} >Submit</Text>
+    </TouchableOpacity>
     </View>
 
     </Pressable>
+    </View>
   )
 }
 
