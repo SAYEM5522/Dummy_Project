@@ -1,12 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { LogBox, StyleSheet, Text, View } from 'react-native';
+import 'react-native-reanimated'
+import 'react-native-gesture-handler';
+import Screen from './components/Screen';
+import Authentication from './components/Authentication';
+import Scanner from './components/Scanner';
+import MapItem from './components/MapItem';
+import HomeStackScreen from './StackScreen/HomeStackScreen';
 export default function App() {
+  LogBox.ignoreLogs(['ColorPropType will be','PointPropType will be','EdgeInsetsPropType will be','ViewPropTypes will be','Overwriting fontFamily'])
+
+const app=true
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <>
+   {
+  app?
+  <HomeStackScreen/>
+  :
+  <View style={styles.container}>
+  <Authentication/>
+  </View>
+   }
+   </>
   );
 }
 
