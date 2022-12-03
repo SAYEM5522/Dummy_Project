@@ -1,21 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
- phone:""
+ token:"",
+ departure:"",
+ destination:""
 }
 
 const UserStore = createSlice({
   name: "UserStore",
   initialState,
   reducers: {
-    setPhone:(state,action)=>{
-  state.phone=action.payload.phone
+    setToken:(state,action)=>{
+  state.token=action.payload.token
     }
-  }
+  },
+  setDeparture:(state,action)=>{
+    state.departure=action.payload.departure
+      },
+      setDestination:(state,action)=>{
+        state.destination=action.payload.destination
+          },
+
 });
 
 export const {
-  setPhone
+  setToken,
+  setDestination,
+  setDeparture
 } = UserStore.actions
-export const selectPhone=(state)=>state.User.phone
+export const selectToken=(state)=>state.User.phone
+export const selectDeparture=(state)=>state.User.departure
+export const selectDestination=(state)=>state.User.destination
+
 export default UserStore.reducer

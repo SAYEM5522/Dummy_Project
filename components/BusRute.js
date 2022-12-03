@@ -1,22 +1,67 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-
-const BusRute = () => {
+import axios from 'axios'
+const BusRute = ({route}) => {
   const Rute="Mirpur 10"
   const Fare=100
   const navigation=useNavigation()
+  const [departureList,setDepartureList]=useState([])
+  const [loading,setLoading]=useState(true)
+  
+  
   const Submit=useCallback(()=>{
     navigation.navigate("BusList")
   },[])
+  const getBusToute=async()=>{
+    await axios.get("http://192.168.0.106:5001/getBikalpa").then((res)=>{
+     setDepartureList(res.data)
+     setLoading(false)
+    }).catch((err)=>{
+     console.log(err.message)
+    })
+ }
+ useEffect(()=>{
+  getBusToute(),
+  ()=>getBusToute()
+ },[loading])
+ 
   return (
-    <View style={styles.Container}>
-      <Text style={styles.BusRute}>BusRute:{Rute}</Text>
-      <Text style={styles.BusFare}>Fare:{Fare} Taka</Text>
+    <>
+    {
+      loading?
+      <View>
+        <Text>
+          Loading
+        </Text>
+        </View>:
+      <View style={styles.Container}>
+      <Text style={styles.BusRute}>BusRute:{route.params.destination}</Text>
+      
+      {
+        
+        departureList.map(category =>
+            departureList.map((subcategory, i) =>{
+            if(category.stoppage===route.params.departure&& subcategory.stoppage===route.params.destination){
+              return(
+                <Text style={styles.BusFare} key={i}>Bus Fare:{Math.abs(subcategory.distance-category.distance)*2.5} Taka</Text>
+
+              )
+            }
+           })
+        )
+         
+        }
+
+        
       <TouchableOpacity onPress={Submit}>
     <Text style={styles.BusButton} >Select A Bus</Text>
     </TouchableOpacity>
     </View>
+
+    }
+   
+    </>
   )
 }
 

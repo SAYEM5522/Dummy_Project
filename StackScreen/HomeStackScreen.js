@@ -7,7 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Screen from '../components/Screen';
 import BusList from '../components/BusList';
 import QRCodeInformation from '../components/QRCodeInformation';
-
+import { Provider } from 'react-redux';
+import store from '../app/store';
 const HomeStackScreen = () => {
   const Stack = createNativeStackNavigator();
 

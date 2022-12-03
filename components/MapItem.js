@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
   },
  });
 const MapItem = () => {
-  LogBox.ignoreLogs(['ColorPropType will be','PointPropType will be','EdgeInsetsPropType will be','ViewPropTypes will be','Overwriting fontFamily'])
 
    return (
     <View style={styles.container}>

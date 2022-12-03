@@ -1,9 +1,10 @@
 import { Dimensions, Keyboard, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 const { width, height } = Dimensions.get('window')
-
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 const styles = StyleSheet.create({
   inner: {
     paddingVertical:10 ,
@@ -29,11 +30,18 @@ const styles = StyleSheet.create({
 const Departure = () => {
   const [departure, setDeparture] = useState('');
   const [destination, setDestination] = useState('');
-
+  
+   
   const navigation=useNavigation()
   const Submit=useCallback(()=>{
-    navigation.navigate("BusRute")
-  },[])
+    navigation.navigate("BusRute",{
+      departure:departure,
+      destination:destination
+    })
+  },[departure,destination])
+ 
+ 
+
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
     <View style={styles.inner}>

@@ -1,5 +1,7 @@
 import { Dimensions, Keyboard, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
+import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
@@ -34,7 +36,18 @@ const styles = StyleSheet.create({
 
 const SignIn = () => {
   const [Phone, setPhone] = useState('');
-  const Submit=useCallback(()=>{
+  const [passward, setPassward] = useState('');
+const headers={
+  'Authorization': 'basic T64Mdy7m['
+}
+  const Submit=useCallback(async()=>{
+    try {
+      const res = await axios.post(`http://192.168.0.106:5001/auth`,{phone:Phone,passward:passward},headers)
+      AsyncStorage.setItem("token",res.data.data)
+      console.log(res.data.message)
+    } catch(err) {
+      console.log(err.message);
+    }
   },[])
 
   return (
@@ -49,6 +62,12 @@ const SignIn = () => {
     <TextInput 
       onChangeText={(text)=>setPhone(text)}
       placeholder='Phone Number...'
+       style={styles.textInput} />
+                <Text style={{marginTop:20}}>Passward </Text>
+    <TextInput 
+      onChangeText={(text)=>setPassward(text)}
+      placeholder='Passward...'
+      secureTextEntry={true}
        style={styles.textInput} />
     </View>
     <TouchableOpacity onPress={Submit}>

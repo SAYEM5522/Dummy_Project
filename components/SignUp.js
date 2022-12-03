@@ -1,8 +1,11 @@
 import { Dimensions, Keyboard, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, useWindowDimensions, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../feature/UserStore'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const { width, height } = Dimensions.get('window')
-
 const styles = StyleSheet.create({
   inner: {
     paddingVertical:10 ,
@@ -36,9 +39,24 @@ const styles = StyleSheet.create({
 const SignUp = () => {
   const [name, setName] = useState('');
   const [Phone, setPhone] = useState('');
-  const navigation=useNavigation()
+  const [passward, setPassward] = useState('');
+  const dispatch=useDispatch()
 
-  const Submit=useCallback(()=>{
+  const navigation=useNavigation()
+  let headers = {
+    headers: {
+        // 'Accept': 'application/json',
+        // 'Content-Type': 'multipart/form-data'
+    }
+
+}
+  const Submit=useCallback(async()=>{
+    try {
+      const res = await axios.post(`http://192.168.0.106:5001/user`,{name:name,phone:Phone,passward:passward})
+      AsyncStorage.setItem("token",res.data.token)
+    } catch(err) {
+      console.log(err.message);
+    }
   },[])
   const Goto=useCallback(()=>{
      navigation.navigate("SignIn")
@@ -62,6 +80,12 @@ const SignUp = () => {
     <TextInput 
       onChangeText={(text)=>setPhone(text)}
       placeholder='Phone Number...'
+       style={styles.textInput} />
+         <Text style={{marginTop:20}}>Passward </Text>
+    <TextInput 
+      onChangeText={(text)=>setPassward(text)}
+      placeholder='Passward...'
+      secureTextEntry={true}
        style={styles.textInput} />
     </View>
     <TouchableOpacity onPress={Submit}>
