@@ -9,7 +9,7 @@ import { selectToken } from './feature/UserStore';
 import store from './app/store';
 import ScreenList from './ScreenList';
 export default function App() {
-  LogBox.ignoreLogs(['ColorPropType will be','PointPropType will be','EdgeInsetsPropType will be','ViewPropTypes will be','Overwriting fontFamily'])
+  LogBox.ignoreLogs(['ColorPropType will be','PointPropType will be','EdgeInsetsPropType will be','ViewPropTypes will be','Overwriting fontFamily style attribute preprocessor'])
 
   // const app=useSelector(selectToken)
 
