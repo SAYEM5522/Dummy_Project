@@ -42,9 +42,8 @@ const headers={
 }
   const Submit=useCallback(async()=>{
     try {
-      const res = await axios.post(`http://192.168.0.106:5001/auth`,{phone:Phone,passward:passward},headers)
+      const res = await axios.post(`http://192.168.0.102:5001/auth`,{phone:Phone,passward:passward},headers)
       AsyncStorage.setItem("token",res.data.data)
-      console.log(res.data.message)
     } catch(err) {
       console.log(err.message);
     }

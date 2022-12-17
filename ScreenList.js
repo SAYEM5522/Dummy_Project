@@ -5,14 +5,27 @@ import { selectToken } from './feature/UserStore'
 import HomeStackScreen from './StackScreen/HomeStackScreen'
 import AuthenticationStack from './StackScreen/AuthenticationStack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const ScreenList = () => {
-  const app=AsyncStorage.getItem("token")
-  console.log(app)
+  const [token,setToken]=useState(false)
+  const getToken=async()=>{
+  const t=await AsyncStorage.getItem("token")
+  if(t){
+    setToken(true)
+  }else{
+    setToken(false)
+  }
+  }
+  useEffect(()=>{
+  getToken()
+  },[token])
+  
   return (
     <View style={{flex:1}}>
       {
-        app?
+        token?
         <View style={{flex:1}}>
           <HomeStackScreen/>
 

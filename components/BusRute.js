@@ -3,18 +3,20 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
 const BusRute = ({route}) => {
-  const Rute="Mirpur 10"
-  const Fare=100
   const navigation=useNavigation()
   const [departureList,setDepartureList]=useState([])
   const [loading,setLoading]=useState(true)
+  const fare=0
   
   
   const Submit=useCallback(()=>{
-    navigation.navigate("BusList")
+    navigation.navigate("BusList",{
+      departure:route.params.departure,
+      destination:route.params.destination
+    })
   },[])
   const getBusToute=async()=>{
-    await axios.get("http://192.168.0.106:5001/getBikalpa").then((res)=>{
+    await axios.get("http://192.168.0.102:5001/getBikalpa").then((res)=>{
      setDepartureList(res.data)
      setLoading(false)
     }).catch((err)=>{

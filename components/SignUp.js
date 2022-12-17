@@ -43,21 +43,21 @@ const SignUp = () => {
   const dispatch=useDispatch()
 
   const navigation=useNavigation()
-  let headers = {
-    headers: {
-        // 'Accept': 'application/json',
+  const  headers={
+        'Accept': 'application/json',
         // 'Content-Type': 'multipart/form-data'
     }
 
-}
-  const Submit=useCallback(async()=>{
+  const Submit=async()=>{
     try {
-      const res = await axios.post(`http://192.168.0.106:5001/user`,{name:name,phone:Phone,passward:passward})
-      AsyncStorage.setItem("token",res.data.token)
+      const res = await axios.post(`http://192.168.0.102:5001/user`,{name:name,phone:Phone,passward:passward})
+     await AsyncStorage.setItem("token",res.data.token)
+     await AsyncStorage.setItem("name",res.data.name)
+     await AsyncStorage.setItem("phone",res.data.phone)
     } catch(err) {
       console.log(err.message);
     }
-  },[])
+  }
   const Goto=useCallback(()=>{
      navigation.navigate("SignIn")
   },[])

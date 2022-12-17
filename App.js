@@ -15,9 +15,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-        {/* <View> */}
           <ScreenList/>
-        {/* </View> */}
     </Provider>
    
    

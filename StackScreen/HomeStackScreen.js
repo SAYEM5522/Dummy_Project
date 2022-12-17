@@ -9,6 +9,7 @@ import BusList from '../components/BusList';
 import QRCodeInformation from '../components/QRCodeInformation';
 import { Provider } from 'react-redux';
 import store from '../app/store';
+import QrCodegenerator from '../components/QrCodegenerator';
 const HomeStackScreen = () => {
   const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,8 @@ const HomeStackScreen = () => {
     <Stack.Screen name="BusList" component={BusList} />
     <Stack.Screen name="Scanner" component={Scanner} />
     <Stack.Screen name="QRCodeInformation" component={QRCodeInformation} />
+    <Stack.Screen name="QrCodegenerator" component={QrCodegenerator} />
+
 
     </Stack.Navigator>
     </NavigationContainer>

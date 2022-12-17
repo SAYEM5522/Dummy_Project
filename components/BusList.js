@@ -12,18 +12,29 @@ const styles = StyleSheet.create({
     borderRadius:8,
     paddingVertical:10,
    position:"absolute",
-   bottom:-(height-100)
+   bottom:-(height-150)
+  },
+  BusName:{
+    alignSelf:"center",
+    fontSize:18,
+    fontWeight:"600",
+    marginTop:15,
+    fontStyle:"italic",
   }
 })
-const BusList = () => {
+const BusList = ({route}) => {
   const navigation=useNavigation()
   const Submit=useCallback(()=>{
-    navigation.navigate("Scanner")
+    navigation.navigate("QrCodegenerator",{
+      departure:route.params.departure,
+      destination:route.params.destination
+    })
   },[])
   return (
     <View>
+      <Text style={styles.BusName}>Bikalpa</Text>
     <TouchableOpacity onPress={Submit}>
-    <Text style={styles.BusButton} >Scan QR Code</Text>
+    <Text style={styles.BusButton} >Generate QR Code</Text>
     </TouchableOpacity>
     </View>
   )

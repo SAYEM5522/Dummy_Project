@@ -36,14 +36,14 @@ const Departure = () => {
   
   
   const navigation=useNavigation()
-  // const getText=async()=>{
-  //   const d=MlkitOcr.detectFromUri(uri)
-  //   d.then((data)=>{
-  //     console.log(data)
-  //   }).catch((err)=>{
-  //     console.log(err.message)
-  //   })
-  // }
+//   const getText=async()=>{
+//     const d=MlkitOcr.detectFromUri(uri)
+//     d.then((data)=>{
+//       console.log(data)
+//     }).catch((err)=>{
+//       console.log(err.message)
+//     })
+//   }
   
 //   useEffect(()=>{
 //  getText()
@@ -59,7 +59,7 @@ const Departure = () => {
 
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
-    {/* <View style={styles.inner}>
+    <View style={styles.inner}>
   <View>
         </View>
     <View style={{paddingTop:15}}>
@@ -79,8 +79,8 @@ const Departure = () => {
     </TouchableOpacity>
 
   
-    </View> */}
-    <View style={styles.container}>
+    </View>
+    {/* <View style={styles.container}>
         
        <QRCode
        value="Just some string value"
@@ -88,7 +88,7 @@ const Departure = () => {
        logoSize={30}
       logoBackgroundColor='transparent'
        />
-      </View>
+      </View> */}
     {/* <Button title='hello' onPress={getText}/> */}
 
     </Pressable>
