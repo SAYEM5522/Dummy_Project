@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 const BusList = ({route}) => {
   const navigation=useNavigation()
   const Submit=useCallback(()=>{
-    navigation.navigate("QrCodegenerator",{
+    navigation.navigate("Scanner",{
       departure:route.params.departure,
       destination:route.params.destination
     })
@@ -34,7 +34,7 @@ const BusList = ({route}) => {
     <View>
       <Text style={styles.BusName}>Bikalpa</Text>
     <TouchableOpacity onPress={Submit}>
-    <Text style={styles.BusButton} >Generate QR Code</Text>
+    <Text style={styles.BusButton} >Scan Bus QR code</Text>
     </TouchableOpacity>
     </View>
   )

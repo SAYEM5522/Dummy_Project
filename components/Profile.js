@@ -52,6 +52,8 @@ const Profile = () => {
       />
       <Text style={styles.content}>Name: {name}</Text>
       <Text style={styles.content}>Phone: {phone}</Text>
+      <Text style={styles.content}>Balance:70 Taka</Text>
+
 
     </View>
   )

@@ -7,7 +7,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useNavigation } from '@react-navigation/native';
 const {width, height} = Dimensions.get('window')
 
-export default function Scanner() {
+export default function Scanner({route}) {
   const [hasPermission, setHasPermission] = React.useState(false);
   const [scanData, setScanData] = React.useState();
   const navigation=useNavigation()
@@ -21,7 +21,10 @@ export default function Scanner() {
       scanData&& 
       navigation.navigate("QRCodeInformation",
       {
-        data:scanData
+        data:scanData,
+        departure:route.params.departure,
+        destination:route.params.destination
+        
       }
       )
     )

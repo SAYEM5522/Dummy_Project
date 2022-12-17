@@ -6,7 +6,7 @@ const BusRute = ({route}) => {
   const navigation=useNavigation()
   const [departureList,setDepartureList]=useState([])
   const [loading,setLoading]=useState(true)
-  const fare=0
+  const [fare,setfare]=useState()
   
   
   const Submit=useCallback(()=>{
@@ -46,6 +46,7 @@ const BusRute = ({route}) => {
             departureList.map((subcategory, i) =>{
             if(category.stoppage===route.params.departure&& subcategory.stoppage===route.params.destination){
               return(
+                
                 <Text style={styles.BusFare} key={i}>Bus Fare:{Math.abs(subcategory.distance-category.distance)*2.5} Taka</Text>
 
               )
